@@ -139,26 +139,34 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_THROTTLE_RATES': {
         'anon': '100/day',
-    }
+    },
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework_xml.parsers.XMLParser',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework_xml.renderers.XMLRenderer',
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    
 }
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/1",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }
  
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-SESSION_CACHE_ALIAS = 'default'
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# SESSION_CACHE_ALIAS = 'default'
 
-LOCALE_PATH = (
-    os.path.join(BASE_DIR, 'locale/')
-)
+# LOCALE_PATH = (
+#     os.path.join(BASE_DIR, 'locale/')
+# )

@@ -32,5 +32,16 @@ class CursosTestCase(APITestCase):
         response = self.client.post(self.list_url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
     
-    # def test_falhador(self):
-    #     self.fail("Error test")
+    def test_requisicao_delete_curso(self):
+        response = self.client.delete('/cursos/1/')
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+    
+    def test_requisicao_put_atualizar_curso(self):
+        data = {
+            'codigo_curso': 'CTT1',
+            'descricao': 'Curso teste 1 atualizado',
+            'nivel': 'I'
+        }
+        response = self.client.put('/cursos/1/', data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
